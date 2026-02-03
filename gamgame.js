@@ -14,13 +14,7 @@ let playerEl = document.getElementById("player-el")
 playerEl.innerText = player.name+": "+player.chips
 function getRandomCard() {
     let randomNumber = Math.floor( Math.random()*13 ) + 1
-    if (randomNumber > 10) {
-        return 10
-    } else if (randomNumber === 1) {
-        return 11
-    } else {
-        return randomNumber
-    }
+    return randomNumber > 10 ? 10 : randomNumber === 1 ? 11 : randomNumber
 }
 
 function startGame() {
@@ -39,15 +33,7 @@ function renderGame() {
     }
     
     sumEl.textContent = "Sum: " + sum
-    if (sum <= 20) {
-        message = "Do you want to draw a new card?"
-    } else if (sum === 21) {
-        message = "You've got Blackjack!"
-        hasBlackJack = true
-    } else {
-        message = "You're out of the game!"
-        isAlive = false
-    }
+    message = sum <= 20 ? "Do you want to draw a new card?" : sum === 21 ? ("You've got Blackjack!", hasBlackJack = true) : ("You're out of the game!", isAlive = false)
     messageEl.textContent = message
 }
 
